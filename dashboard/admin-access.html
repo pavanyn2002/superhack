@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Access Management - SuperHack 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #c41e3a 0%, #8b0000 100%);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(196, 30, 58, 0.3);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #ffd700;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #ffd700;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #1a1a1a;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.4);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .alert {
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .alert-success {
+            background: rgba(34, 139, 34, 0.2);
+            border: 2px solid #228b22;
+            color: #90ee90;
+        }
+
+        .alert-error {
+            background: rgba(220, 20, 60, 0.2);
+            border: 2px solid #dc143c;
+            color: #ff6b6b;
+        }
+
+        .result-details {
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            font-size: 14px;
+            color: #ffffff;
+        }
+
+        .result-details p {
+            margin: 8px 0;
+            line-height: 1.6;
+            color: #ffffff;
+        }
+
+        .result-details strong {
+            color: #ffd700;
+        }
+
+        .policies-list {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+
+        .policies-list li {
+            margin: 5px 0;
+            color: #90ee90;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #ffd700;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .info-box {
+            background: rgba(255, 215, 0, 0.1);
+            border-left: 4px solid #ffd700;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .info-box h3 {
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+
+        .info-box ul {
+            padding-left: 20px;
+        }
+
+        .info-box li {
+            margin: 5px 0;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🔐 Admin Access Management</h1>
+            <p class="subtitle">Automated IAM Role Provisioning</p>
+        </header>
+
+        <div class="card">
+            <div class="info-box">
+                <h3>Test Managers Available:</h3>
+                <ul>
+                    <li><strong>MGR001</strong> - Alice Manager (ReadOnlyAccess)</li>
+                    <li><strong>MGR002</strong> - Bob Manager (PowerUserAccess)</li>
+                    <li><strong>MGR003</strong> - Carol Manager (ViewOnlyAccess)</li>
+                </ul>
+            </div>
+
+            <div id="alertContainer"></div>
+
+            <form id="provisionForm">
+                <div class="form-group">
+                    <label for="managerID">Manager Employee ID *</label>
+                    <input type="text" id="managerID" placeholder="e.g., MGR001" required pattern="[A-Za-z0-9-]{1,50}"
+                        title="Alphanumeric characters and hyphens only (max 50 chars)">
+                </div>
+
+                <div class="form-group">
+                    <label for="newEmployeeID">New Employee ID *</label>
+                    <input type="text" id="newEmployeeID" placeholder="e.g., EMP123" required
+                        pattern="[A-Za-z0-9-]{1,50}" title="Alphanumeric characters and hyphens only (max 50 chars)">
+                </div>
+
+                <div class="form-group">
+                    <label for="newEmployeeName">New Employee Name *</label>
+                    <input type="text" id="newEmployeeName" placeholder="e.g., John Doe" required
+                        pattern="[A-Za-z\s-]{1,100}" title="Letters, spaces, and hyphens only (max 100 chars)">
+                </div>
+
+                <button type="submit" class="btn btn-primary" id="submitBtn">
+                    Provision Access
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'https://7rroyqh7mj.execute-api.us-east-2.amazonaws.com/prod/provision';
+
+        const form = document.getElementById('provisionForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const alertContainer = document.getElementById('alertContainer');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const managerID = document.getElementById('managerID').value.trim();
+            const newEmployeeID = document.getElementById('newEmployeeID').value.trim();
+            const newEmployeeName = document.getElementById('newEmployeeName').value.trim();
+
+            // Clear previous alerts
+            alertContainer.innerHTML = '';
+
+            // Disable button and show loading
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="loading"></span> Provisioning...';
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        manager_employee_id: managerID,
+                        new_employee_id: newEmployeeID,
+                        new_employee_name: newEmployeeName
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    showAlert('success', `
+                        <strong>✅ Success!</strong> IAM role provisioned successfully.
+                        <div class="result-details">
+                            <p><strong>Employee ID:</strong> ${data.new_employee_id}</p>
+                            <p><strong>Employee Name:</strong> ${data.new_employee_name}</p>
+                            <p><strong>IAM Role ARN:</strong> ${data.iam_role_arn}</p>
+                            <p><strong>Created At:</strong> ${new Date(data.created_at).toLocaleString()}</p>
+                            <p><strong>Cloned Policies:</strong></p>
+                            <ul class="policies-list">
+                                ${data.cloned_policies.map(policy => `<li>${policy}</li>`).join('')}
+                            </ul>
+                            <p><strong>Request ID:</strong> ${data.request_id}</p>
+                        </div>
+                    `);
+                    form.reset();
+                } else {
+                    showAlert('error', `
+                        <strong>❌ Error:</strong> ${data.error || 'Failed to provision access'}
+                        ${data.request_id ? `<p style="margin-top: 10px; font-size: 12px;">Request ID: ${data.request_id}</p>` : ''}
+                    `);
+                }
+            } catch (error) {
+                showAlert('error', `
+                    <strong>❌ Network Error:</strong> Failed to connect to the API.
+                    <p style="margin-top: 10px;">${error.message}</p>
+                `);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'Provision Access';
+            }
+        });
+
+        function showAlert(type, message) {
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type}`;
+            alert.innerHTML = message;
+            alert.style.display = 'block';
+            alertContainer.appendChild(alert);
+
+            // Scroll to alert
+            alert.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    </script>
+</body>
+
+</html>

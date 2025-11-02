@@ -1,0 +1,9 @@
+{
+  "employee_id": {"S": "MGR003"},
+  "employee_name": {"S": "Carol Manager"},
+  "manager_id": {"S": "ADMIN"},
+  "iam_role_arn": {"S": "arn:aws:iam::063088900393:role/Manager-MGR003-Role"},
+  "iam_role_name": {"S": "Manager-MGR003-Role"},
+  "created_at": {"S": "2025-11-01T00:00:00Z"},
+  "updated_at": {"S": "2025-11-01T00:00:00Z"}
+}

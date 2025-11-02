@@ -1,0 +1,21 @@
+{
+  "environment": "production",
+  "patches": [
+    {
+      "id": "MS-2025-001",
+      "name": "Windows Server Security Update",
+      "vendor": "Microsoft",
+      "description": "Critical security patch for Windows Server 2022",
+      "cve_ids": ["CVE-2025-1234", "CVE-2025-1235"],
+      "affected_systems": ["web-prod-01", "web-prod-02", "web-prod-03"]
+    },
+    {
+      "id": "SQL-2025-002",
+      "name": "SQL Server Cumulative Update",
+      "vendor": "Microsoft",
+      "description": "Performance and stability improvements for SQL Server 2022",
+      "cve_ids": [],
+      "affected_systems": ["prod-db-01", "prod-db-02"]
+    }
+  ]
+}

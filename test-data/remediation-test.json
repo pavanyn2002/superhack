@@ -1,0 +1,9 @@
+{
+  "platform": "windows",
+  "issue_description": "IIS application pool keeps crashing every 2 hours. Event logs show memory leak in w3wp.exe process.",
+  "system_context": {
+    "os_version": "Windows Server 2022",
+    "installed_software": ["IIS 10.0", ".NET 8.0", "Application Insights"],
+    "current_state": "Application pool recycling frequently"
+  }
+}
