@@ -323,15 +323,6 @@ aws dynamodb update-table `
 
 This project was developed for SuperHack 2025.
 
-## Contributors
-
-- Pavan - Project Lead & Development
-- Eshwar - Architecture & Design
-- Revanth - Testing & Deployment
-
-## Support
-
-For issues or questions, please refer to the deployment scripts and inline documentation within the Lambda functions.
 
 ---
 
